@@ -1,18 +1,22 @@
 {
+  "resolvePackageJsonExports": false,
   "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
     "next.config.js",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "postcss.config.js",
+    "tailwind.config.js"
   ],
   "exclude": ["node_modules"]
 }
