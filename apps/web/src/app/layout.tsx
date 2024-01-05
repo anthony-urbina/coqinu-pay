@@ -1,10 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { Navbar } from "../components/navbar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Coqinu Pay",
@@ -18,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
       <Providers>
         <body>
           <Navbar />
-          {children}
+          <div className='pl-3 md:pl-8'>{children}</div>
         </body>
       </Providers>
     </html>

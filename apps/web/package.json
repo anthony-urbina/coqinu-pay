@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@repo/ui": "*",
+    "connectkit": "^1.5.3",
     "connectkit-next-siwe": "^0.2.0",
-    "next": "^14.0.3",
+    "next": "^13.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.49.2",
     "siwe": "^2.1.4"
   },
   "devDependencies": {
