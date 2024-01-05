@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
       <Providers>
         <body>
           <Navbar />
-          <div className='pl-3 md:pl-8'>{children}</div>
+          <div className='px-3 md:pl-8'>{children}</div>
         </body>
       </Providers>
     </html>

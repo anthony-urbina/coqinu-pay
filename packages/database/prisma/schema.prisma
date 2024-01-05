@@ -1,0 +1,43 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model User {
+  id               String       @default(cuid()) @id
+  displayName      String?
+  twitterUsername  String?      @unique
+  profileImageUrl  String       @default("/images/default-profile-image.png")
+  walletAddress    String       @unique
+  createdAt        DateTime     @default(now()) @map(name: "created_at")
+  updatedAt        DateTime     @updatedAt @map(name: "updated_at")
+
+  sentTransactions Transaction[] @relation("TransactionsFromUser")
+  receivedTransactions Transaction[] @relation("TransactionsToUser")
+  
+  @@map(name: "users")
+}
+
+
+model Transaction {
+  id         String   @default(cuid()) @id
+  value      Float
+  txHash     String   @unique
+  createdAt  DateTime @default(now()) @map(name: "created_at")
+  updatedAt  DateTime @updatedAt @map(name: "updated_at")
+
+  fromUserId String
+  toUserId   String
+  fromUser   User     @relation("TransactionsFromUser", fields: [fromUserId], references: [id])
+  toUser     User     @relation("TransactionsToUser", fields: [toUserId], references: [id])
+
+  @@map(name: "transactions")
+}
+

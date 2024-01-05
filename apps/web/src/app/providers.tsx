@@ -36,7 +36,7 @@ export const Providers = ({ children }: { children: ReactNode }) => {
         signOutOnDisconnect={true} // defaults true
         signOutOnAccountChange={true} // defaults true
         signOutOnNetworkChange={true} // defaults true
-        onSignIn={(session?: SIWESession) => undefined}
+        onSignIn={() => undefined}
         onSignOut={() => undefined}
       >
         <ConnectKitProvider>{children}</ConnectKitProvider>

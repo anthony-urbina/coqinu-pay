@@ -17,6 +17,9 @@ module.exports = {
         primary: "white",
         orange: "#D65752",
       },
+      fontSize: {
+        "2xs": "0.625rem",
+      },
     },
   },
   plugins: [],
