@@ -1,18 +1,18 @@
 "use client";
-import { WagmiConfig, createConfig, mainnet } from "wagmi";
-import { ConnectKitProvider, SIWESession, getDefaultConfig } from "connectkit";
+import { WagmiConfig, createConfig } from "wagmi";
+import { ConnectKitProvider, getDefaultConfig } from "connectkit";
 import { ReactNode } from "react";
-// import { UserWrapper } from "@/contexts/UserContext";
-// import { ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import { useSsr } from "@/hooks/useSsr";
 import { avalanche, avalancheFuji } from "viem/chains";
 import { siweClient } from "../utils/siwe-client";
+import { AuthContext } from "@/contexts/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { UserProvider } from "@/contexts/UserContext";
 
 const config = createConfig(
   getDefaultConfig({
-    alchemyId: process.env.NEXT_PUBLIC_ALCHEMY as string,
-    walletConnectProjectId: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
+    alchemyId: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
+    walletConnectProjectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_ID as string,
     appName: "Coqinu Pay",
     chains: [avalanche, avalancheFuji],
 
@@ -39,7 +39,14 @@ export const Providers = ({ children }: { children: ReactNode }) => {
         onSignIn={() => undefined}
         onSignOut={() => undefined}
       >
-        <ConnectKitProvider>{children}</ConnectKitProvider>
+        <ConnectKitProvider>
+          <AuthContext>
+            <UserProvider>
+              <ToastContainer />
+              {children}
+            </UserProvider>
+          </AuthContext>
+        </ConnectKitProvider>
       </siweClient.Provider>
     </WagmiConfig>
   );

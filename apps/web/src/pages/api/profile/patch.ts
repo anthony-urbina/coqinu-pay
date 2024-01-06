@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const walletAddress = session?.address?.toLowerCase();
 
   if (!walletAddress) {
-    return res.status(403).json({ message: "Unauthorized request" });
+    return res.status(403).json({ message: "You must be signed in to edit your profile" });
   }
 
   const { displayName, twitterUsername } = req.body;
