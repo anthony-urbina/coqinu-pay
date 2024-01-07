@@ -47,7 +47,7 @@ export const EditProfileForm = () => {
     try {
       setIsSendingUpdateRequest(true);
       console.log("submit form data:", data);
-      const res = await sendUpdateProfileRequest(data);
+      const res = await sendUpdateUserRequest(data);
       setIsSendingUpdateRequest(false);
       console.log({ res });
       const { message } = res.data;
@@ -57,8 +57,8 @@ export const EditProfileForm = () => {
     }
   };
 
-  const sendUpdateProfileRequest = async (data: ProfileSchema) => {
-    const res = await axios.patch("/api/profile/patch", data);
+  const sendUpdateUserRequest = async (data: ProfileSchema) => {
+    const res = await axios.patch("/api/user/patch", data);
     return res;
   };
 

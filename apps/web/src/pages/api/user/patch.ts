@@ -1,6 +1,7 @@
 import { siweServer } from "@/utils/siwe-server";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
+import { patchUserValidator } from "../../../../../../packages/schemas/user/patch";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST" && req.method !== "PATCH") {
@@ -15,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(403).json({ message: "You must be signed in to edit your profile" });
   }
 
-  const { displayName, twitterUsername } = req.body;
+  const { displayName, twitterUsername } = patchUserValidator.parse(req.body);
 
   try {
     await prisma.user.upsert({
