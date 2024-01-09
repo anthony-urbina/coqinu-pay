@@ -16,15 +16,15 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["assets/coqinu-logo.png"],
+      "resources": ["assets/img/coqinu-logo.png"],
       "matches": ["https://*.twitter.com/*", "https://*.x.com/*"]
     }
   ],
   "action": {
     "default_icon": {
-      "16": "assets/coqinu-logo.png",
-      "24": "assets/coqinu-logo.png",
-      "32": "assets/coqinu-logo.png"
+      "16": "assets/img/coqinu-logo.png",
+      "24": "assets/img/coqinu-logo.png",
+      "32": "assets/img/coqinu-logo.png"
     },
     "default_title": "CoqinuPay",
     "default_popup": "popup.html"
