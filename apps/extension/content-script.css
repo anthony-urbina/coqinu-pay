@@ -1,0 +1,17 @@
+.coqinu-tip-btn {
+  background-color: #d65752;
+  font-weight: bold;
+  margin-bottom: 12px;
+  margin-right: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 9999px;
+  color: #fbee91;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.coqinu-tip-btn:hover {
+  background-color: rgba(231, 109, 103, 0.9);
+}

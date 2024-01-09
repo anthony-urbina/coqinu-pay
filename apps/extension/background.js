@@ -1,24 +1,30 @@
 const ignorePathnames = ["notifications", "explore", "home", "messages"];
 
-chrome.tabs.onUpdated.addListener(async (tabId, tab) => {
-  if (shouldProcessTab(tab)) {
-    const username = extractUsernameFromPath(tab.url);
-
-    if (username) {
-      const userData = await fetchUserFromDirectory(username);
-      console.log("res:", response);
-
-      const userIsInDirectory = userData.twitterUsername && userData.walletAddress;
-      if (userIsInDirectory) {
-        const payload = {
-          username: twitterUsername,
-          walletAddress,
-        };
-        chrome.tabs.sendMessage(tabId, { type: "NEW_USER", ...payload });
-      }
-    }
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete" && tab.url && shouldProcessTab(tab)) {
+    handleTabUpdate(tabId, tab.url);
   }
 });
+
+async function handleTabUpdate(tabId, url) {
+  const username = extractUsernameFromPath(url);
+  if (username) {
+    const user = await fetchUserFromDirectory(username);
+    console.log("user:", user);
+    const { twitterUsername, walletAddress } = user;
+
+    const userIsInDirectory = twitterUsername && walletAddress;
+    if (userIsInDirectory) {
+      console.log("sending message to content script");
+      const payload = {
+        type: "NEW",
+        username: twitterUsername,
+        walletAddress,
+      };
+      chrome.tabs.sendMessage(tabId, payload);
+    }
+  }
+}
 
 function shouldProcessTab(tab) {
   const isTwitterTab = tab.url.includes("twitter.com");
