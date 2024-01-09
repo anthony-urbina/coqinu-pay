@@ -4,6 +4,7 @@
   "description": "The future of chad coin payments 🔺🐓",
   "permissions": ["storage", "tabs"],
   "host_permissions": ["https://*.twitter.com/*", "https://*.x.com/*", "http://localhost:3000/*"],
+  "default_locale": "en",
   "background": {
     "service_worker": "background.js"
   },
@@ -16,15 +17,15 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["assets/img/coqinu-logo.png"],
+      "resources": ["assets/img/24x24.png"],
       "matches": ["https://*.twitter.com/*", "https://*.x.com/*"]
     }
   ],
   "action": {
     "default_icon": {
-      "16": "assets/img/coqinu-logo.png",
-      "24": "assets/img/coqinu-logo.png",
-      "32": "assets/img/coqinu-logo.png"
+      "16": "assets/img/24x24.png",
+      "24": "assets/img/24x24.png",
+      "32": "assets/img/24x24.png"
     },
     "default_title": "CoqinuPay",
     "default_popup": "popup.html"
