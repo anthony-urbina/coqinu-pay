@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export const Navbar = () => {
-  const { signIn, isSignedIn, data } = useSIWE();
+  const { isSignedIn, data } = useSIWE();
   const router = useRouter();
   console.log({ isSignedIn, data });
 

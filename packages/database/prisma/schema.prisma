@@ -33,7 +33,7 @@ model Transaction {
   createdAt  DateTime @default(now()) @map(name: "created_at")
   updatedAt  DateTime @updatedAt @map(name: "updated_at")
 
-  fromUserId String?    // Make this optional
+  fromUserId String?   
   toUserId   String
   fromUser   User?      @relation("TransactionsFromUser", fields: [fromUserId], references: [id])
   toUser     User       @relation("TransactionsToUser", fields: [toUserId], references: [id])
