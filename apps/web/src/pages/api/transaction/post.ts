@@ -1,4 +1,3 @@
-import { siweServer } from "@/utils/siwe-server";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/lib/prisma";
 import { transactionPostValidator } from "../../../../../../packages/schemas/transaction/post";

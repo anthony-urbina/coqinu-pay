@@ -19,17 +19,82 @@
 .modal {
   display: none;
   position: absolute;
-
   z-index: 1;
-  padding-top: 100px;
-  right: 0;
+  padding-top: 15px;
+  right: 30%;
   top: 0;
-  width: 200;
-  height: 300;
+  width: 300px;
+  height: 240px;
   overflow: auto;
-  background-color: #d65752;
+  background-color: #18181b;
 }
 
 .modal.open {
   display: block;
+}
+
+.tip-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tip-input {
+  width: 90%;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.send-tip-btn {
+  background-color: #d65752;
+  font-weight: bold;
+  margin-top: 12px;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 9999px;
+  color: #fbee91;
+  font-size: 15px;
+  cursor: pointer;
+  width: 90%;
+}
+
+.coqinu-logo {
+  width: 90px;
+  height: 90px;
+}
+.coqinu-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 24px;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: lighter;
+  border: none;
+}
+
+.success-message {
+  color: #d65752;
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.snowtrace-link {
+  color: #fbee91;
+  text-decoration: none;
+  font-size: 14px;
 }

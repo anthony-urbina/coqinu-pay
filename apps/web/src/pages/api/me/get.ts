@@ -9,7 +9,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const session = await siweServer.getSession(req, res);
   const walletAddress = session?.address?.toLowerCase();
-
   if (!walletAddress) {
     return res.status(403).json({ message: "You must be signed in to view your profile" });
   }

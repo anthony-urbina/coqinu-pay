@@ -1,0 +1,32 @@
+#tab-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  background-color: #18181b;
+}
+
+.tab-button {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.tab-button:hover {
+  background-color: #e0e0e0;
+}
+
+.content {
+  display: none;
+}
+
+.transaction-item {
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+
+.transaction-link {
+  color: blue;
+  text-decoration: none;
+}
