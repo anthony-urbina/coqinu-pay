@@ -1,1 +1,89 @@
-(()=>{chrome.tabs.onUpdated.addListener(((e,n,o)=>{"complete"===n.status&&o.url&&function(t){const e=t.url.includes("twitter.com"),n=t.url.includes("x.com");return t.url&&(e||n)&&!function(t){const e=new URL(t).pathname.split("/")[1];return["notifications","explore","home","messages"].includes(e)}(t.url)}(o)&&async function(e,n){const o=function(t){const e=new URL(t).pathname.split("/").filter((t=>t));return e.length>0?e[0]:null}(n);if(o){const n=await t(o);console.log("user:",n);const{twitterUsername:s,walletAddress:r}=n;if(s&&r){console.log("sending message to content script");const t={type:"NEW",username:s,walletAddress:r};chrome.tabs.sendMessage(e,t)}}}(e,o.url)}));const t=async t=>{try{const e=`http://localhost:3000/api/user/get/${t}`;return(await fetch(e)).json()}catch(t){throw console.error(t),t}};chrome.runtime.onMessage.addListener(((t,e,n)=>{console.log("request:",t),"TX_SUCCESS"===t.type&&async function(t){const{from:e,to:n,amount:o,hash:s}=t;console.log("saveTxData",t);try{const t="http://localhost:3000/api/transaction/post";return(await fetch(t,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({from:e,to:n,value:Number(o),hash:s})})).json()}catch(t){throw console.error(t),t}}(t)}))})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!***************************!*\
+  !*** ./src/background.js ***!
+  \***************************/
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete" && tab.url && shouldProcessTab(tab)) {
+    handleTabUpdate(tabId, tab.url);
+  }
+});
+
+async function handleTabUpdate(tabId, url) {
+  const username = extractUsernameFromPath(url);
+  if (username) {
+    const user = await fetchUserFromDirectory(username);
+    console.log("user:", user);
+    const { twitterUsername, walletAddress } = user;
+
+    const userIsInDirectory = twitterUsername && walletAddress;
+    if (userIsInDirectory) {
+      console.log("sending message to content script");
+      const payload = {
+        type: "NEW",
+        username: twitterUsername,
+        walletAddress,
+      };
+      chrome.tabs.sendMessage(tabId, payload);
+    }
+  }
+}
+
+function shouldProcessTab(tab) {
+  const isTwitterTab = tab.url.includes("twitter.com");
+  const isXTab = tab.url.includes("x.com");
+  return tab.url && (isTwitterTab || isXTab) && !isPathIgnored(tab.url);
+}
+
+function isPathIgnored(url) {
+  const ignorePathnames = ["notifications", "explore", "home", "messages"];
+  const firstPathPart = new URL(url).pathname.split("/")[1];
+  return ignorePathnames.includes(firstPathPart);
+}
+
+function extractUsernameFromPath(url) {
+  const pathname = new URL(url).pathname;
+  const pathParts = pathname.split("/").filter((part) => part);
+  return pathParts.length > 0 ? pathParts[0] : null;
+}
+
+const fetchUserFromDirectory = async (username) => {
+  try {
+    const url = `https://coqinu-pay-web.vercel.app/api/user/get/${username}`;
+    const response = await fetch(url);
+    return response.json();
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log("request:", request);
+  if (request.type === "TX_SUCCESS") {
+    saveTransaction(request);
+  }
+});
+
+async function saveTransaction(request) {
+  const { from, to, amount, hash } = request;
+  console.log("saveTxData", request);
+  try {
+    const url = "https://coqinu-pay-web.vercel.app/api/transaction/post";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ from, to, value: Number(amount), hash }),
+    });
+    return response.json();
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+
+/******/ })()
+;
+//# sourceMappingURL=background.js.map
