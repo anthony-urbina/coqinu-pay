@@ -1,28 +1,66 @@
+# Project Name
+
+This is the CoqinuPay Directory. Users will sign in with Ethereum then edit their profiles to include their twitter usernames. The chrome extension will look users up by twitter username to find their wallet address
+
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-yarn dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+What things you need to install the software and how to install them:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Node.js](https://nodejs.org/) (version >= v18.17.0)
 
-To create [API routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) add an `api/` directory to the `app/` directory with a `route.ts` file. For individual endpoints, create a subfolder in the `api` directory, like `api/hello/route.ts` would map to [http://localhost:3000/api/hello](http://localhost:3000/api/hello).
+### Installing
 
-## Learn More
+A step-by-step series of examples that tell you how to get a development environment running:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the Repository**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
+   ```bash
+   git clone [URL to your repository]
+   cd [repository name]
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. **Set up Environment Variables**
 
-## Deploy on Vercel
+   ```bash
+   cp .env.example .env
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
+   Change the example env values to your own
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+   Make sure to run this in the root of the turborepo
+
+4. **Setting up Prisma**
+
+   ```bash
+    POSTGRES_PRISMA_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
+   ```
+
+   Set your own `POSTGRES_PRISMA_URL`
+
+   Then run
+
+   ```bash
+   npx prisma generate
+   ```
+
+   ```bash
+   npx prisma studio
+   ```
+
+   To open prisma visual editor
+
+5. **Start Dev Server**
+
+   ```bash
+   npm run dev
+   ```
