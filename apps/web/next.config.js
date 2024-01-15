@@ -14,7 +14,7 @@ module.exports = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           {
             key: "Access-Control-Allow-Origin",
-            value: "chrome-extension://igkccckpbofdomkffdedkmpaipkoloko",
+            value: `chrome-extension://${process.env.CHROME_EXTENSION_ID}}`,
           },
           { key: "Access-Control-Allow-Methods", value: "GET,POST,PUT,PATCH,DELETE,OPTIONS" },
           { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, Authorization, Content-Type" },

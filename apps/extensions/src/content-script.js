@@ -1,33 +1,33 @@
 const { createWalletClient, createPublicClient, parseEther, custom, http } = require("viem");
 const { avalanche } = require("viem/chains");
-// const { createExternalExtensionProvider } = require("@metamask/providers");
-// const { WindowPostMessageStream } = require("@metamask/post-message-stream");
-// const coqAbi = require("./coq-abi.json");
-// console.log("createMetaMaskProvider:", createExternalExtensionProvider);
-// const COQ_ADDRESS = "0x420FcA0121DC28039145009570975747295f2329";
-// const provider = createExternalExtensionProvider();
-// console.log("provider:", provider);
-// const CONTENT_SCRIPT = "fisand-contentscript";
-// const INPAGE = "fisand-inpage";
+const { createExternalExtensionProvider } = require("@metamask/providers");
+const { WindowPostMessageStream } = require("@metamask/post-message-stream");
+const coqAbi = require("./coq-abi.json");
+console.log("createMetaMaskProvider:", createExternalExtensionProvider);
+const COQ_ADDRESS = "0x420FcA0121DC28039145009570975747295f2329";
+const provider = createExternalExtensionProvider();
+console.log("provider:", provider);
+const CONTENT_SCRIPT = "fisand-contentscript";
+const INPAGE = "fisand-inpage";
 
-// const setupPageStream = () => {
-//   const pageStream = new WindowPostMessageStream({
-//     name: CONTENT_SCRIPT,
-//     target: INPAGE,
-//   });
+const setupPageStream = () => {
+  const pageStream = new WindowPostMessageStream({
+    name: CONTENT_SCRIPT,
+    target: INPAGE,
+  });
 
-//   pageStream.on("data", (data) => {
-//     console.log(data + ", world");
-//     setTimeout(() => {
-//       pageStream.write("callback");
-//     }, 1500);
-//   });
-// };
+  pageStream.on("data", (data) => {
+    console.log(data + ", world");
+    setTimeout(() => {
+      pageStream.write("callback");
+    }, 1500);
+  });
+};
 
-// // init stream
-// export default (() => {
-//   setupPageStream();
-// })();
+// init stream
+export default (() => {
+  setupPageStream();
+})();
 
 let link = document.createElement("link");
 link.rel = "stylesheet";
@@ -177,6 +177,7 @@ document.head.appendChild(link);
       const modal = document.querySelector(".modal");
       modal.classList.remove("open");
     });
+    closeBtn.style.zIndex = "100";
 
     return closeBtn;
   };

@@ -63,8 +63,10 @@
     "html_bundles": "./src/popup.html"
   },
   "dependencies": {
-    "extension-cli": "github:katastrcrm/extension-cli#main",
+    "@metamask/post-message-stream": "^7.0.0",
+    "@metamask/providers": "^14.0.2",
     "detect-browser": "^3.0.0",
+    "extension-cli": "github:katastrcrm/extension-cli#main",
     "extension-port-stream": "^2.0.0",
     "metamask-extension-provider": "^3.0.0",
     "stream-browserify": "^3.0.0"
