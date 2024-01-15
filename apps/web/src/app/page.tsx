@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { User } from "database";
 import { UserCard } from "@/components/cards/user-card";
+import { LoadingSpinner } from "@/components/buttons/FilledButton";
 
 export type UserWithTransactionCounts = User & {
   _count: {
@@ -32,11 +33,13 @@ export default function Page(): JSX.Element {
     <main>
       <h1>Welcome to the Registry</h1>
       <div className='flex w-full gap-6 pt-9'>
-        {profiles.length > 0
-          ? profiles.map((profile) => {
-              return <UserCard profile={profile} />;
-            })
-          : "No profiles found"}
+        {profiles.length > 0 ? (
+          profiles.map((profile) => {
+            return <UserCard profile={profile} />;
+          })
+        ) : (
+          <LoadingSpinner />
+        )}
       </div>
     </main>
   );

@@ -10,12 +10,12 @@ export const FilledButton = ({ children, className, isLoading, ...props }: Fille
       className={`border border-primary rounded-md px-4 py-2 flex items-center justify-center text-white hover:bg-opacity-90 bg-orange duration-100 ease-in-out active:scale-[99%] ${className}`}
       {...props}
     >
-      {isLoading ? <LoadingSpinner /> : children}
+      {isLoading ? <LoadingSpinner label='Updating...' /> : children}
     </button>
   );
 };
 
-export const LoadingSpinner = () => {
+export const LoadingSpinner = ({ label }: { label?: string }) => {
   return (
     <div role='status' className='flex items-center gap-x-2'>
       <svg
@@ -34,7 +34,7 @@ export const LoadingSpinner = () => {
           fill='currentFill'
         />
       </svg>
-      <span>Updating...</span>
+      {label && <span>{label}</span>}
     </div>
   );
 };
