@@ -44,7 +44,7 @@ function extractUsernameFromPath(url) {
 
 const fetchUserFromDirectory = async (username) => {
   try {
-    const url = `http://localhost:3000/api/user/get/${username}`;
+    const url = `https://coqinu-pay-web.vercel.app/api/user/get/${username}`;
     const response = await fetch(url);
     return response.json();
   } catch (err) {
@@ -64,7 +64,7 @@ async function saveTransaction(request) {
   const { from, to, amount, hash } = request;
   console.log("saveTxData", request);
   try {
-    const url = "http://localhost:3000/api/transaction/post";
+    const url = "https://coqinu-pay-web.vercel.app/api/transaction/post";
     const response = await fetch(url, {
       method: "POST",
       headers: {

@@ -10,7 +10,7 @@ function showTab(tabName) {
 // Fetch transactions from the API and populate the UI
 async function fetchAndDisplayTransactions() {
   try {
-    const response = await fetch(`http://localhost:3000/api/transactions/get`);
+    const response = await fetch(`https://coqinu-pay-web.vercel.app/api/transactions/get`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
