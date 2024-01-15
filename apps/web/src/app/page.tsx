@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { User } from "@prisma/client";
+import { User } from "database";
 import { UserCard } from "@/components/cards/user-card";
 
 export type UserWithTransactionCounts = User & {

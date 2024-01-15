@@ -1,6 +1,6 @@
 import { createContext, useContext, type ReactNode } from "react";
 import { useMe } from "@/hooks/useMe";
-import { User } from "@prisma/client";
+import { User } from "database";
 
 interface UserContextProps {
   me: User | null;
