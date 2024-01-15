@@ -20,9 +20,5 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "@metamask/post-message-stream": "^7.0.0",
-    "@metamask/providers": "^14.0.2"
-  }
+  ]
 }

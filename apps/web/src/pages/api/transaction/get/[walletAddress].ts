@@ -39,25 +39,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error("No transactions found for user: " + user.id);
     }
 
-    const sent = transactions.map((transaction) => {
-      if (transaction.fromUserId === user.id) {
-        return {
-          direction: "sent",
-          value: transaction.value,
-          link: `https://snowtrace.io/tx/${transaction.txHash}`,
-        };
-      }
-    });
+    const sent = transactions
+      .filter((transaction) => transaction.fromUserId === user.id)
+      .map((transaction) => ({
+        direction: "sent",
+        value: transaction.value,
+        link: `https://snowtrace.io/tx/${transaction.txHash}`,
+      }));
 
-    const received = transactions.map((transaction) => {
-      if (transaction.toUserId === user.id) {
+    const received = transactions
+      .filter((transaction) => transaction.toUserId === user.id)
+      .map((transaction) => {
         return {
           direction: "received",
           value: transaction.value,
           link: `https://snowtrace.io/tx/${transaction.txHash}`,
         };
-      }
-    });
+      });
 
     const reponse = {
       sent,
