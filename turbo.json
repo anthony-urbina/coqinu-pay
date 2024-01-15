@@ -1,18 +1,26 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "globalEnv": ["NEXT_PUBLIC_ALCHEMY_API_KEY", "NEXT_PUBLIC_WALLET_CONNECT_ID", "SESSION_SECRET"],
   "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
     "dev": {
+      "dependsOn": ["^db:generate"],
       "cache": false,
       "persistent": true
+    },
+    "build": {
+      "dependsOn": ["^build", "^db:generate"],
+      "outputs": ["dist/**", ".next/**", ".dev/**", "!.next/cache/**"]
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "lint": {},
+    "hardhat:clean": {
+      "cache": false
+    },
+    "compile": {
+      "dependsOn": ["^hardhat:clean"],
+      "cache": false
     }
   }
 }
