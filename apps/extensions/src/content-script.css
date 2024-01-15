@@ -15,3 +15,21 @@
 .coqinu-tip-btn:hover {
   background-color: rgba(231, 109, 103, 0.9);
 }
+
+.modal {
+  display: none;
+  position: absolute;
+
+  z-index: 1;
+  padding-top: 100px;
+  right: 0;
+  top: 0;
+  width: 200;
+  height: 300;
+  overflow: auto;
+  background-color: #d65752;
+}
+
+.modal.open {
+  display: block;
+}

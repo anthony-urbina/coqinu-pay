@@ -27,9 +27,6 @@
   "eslintIgnore": [
     "test/**/*"
   ],
-  "devDependencies": {
-    "extension-cli": "latest"
-  },
   "xtdocs": {
     "source": {
       "include": [
@@ -63,6 +60,13 @@
         "src": "./src/popup.css"
       }
     ],
-    "html": "./src/popup.html"
+    "html_bundles": "./src/popup.html"
+  },
+  "dependencies": {
+    "extension-cli": "github:katastrcrm/extension-cli#main",
+    "detect-browser": "^3.0.0",
+    "extension-port-stream": "^2.0.0",
+    "metamask-extension-provider": "^3.0.0",
+    "stream-browserify": "^3.0.0"
   }
 }

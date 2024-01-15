@@ -1,5 +1,3 @@
-const ignorePathnames = ["notifications", "explore", "home", "messages"];
-
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === "complete" && tab.url && shouldProcessTab(tab)) {
     handleTabUpdate(tabId, tab.url);
@@ -54,3 +52,29 @@ const fetchUserFromDirectory = async (username) => {
     throw err;
   }
 };
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log("request:", request);
+  if (request.type === "TX_SUCCESS") {
+    saveTransaction(request);
+  }
+});
+
+async function saveTransaction(request) {
+  const { from, to, amount, hash } = request;
+  console.log("saveTxData", request);
+  try {
+    const url = "http://localhost:3000/api/transaction/post";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ from, to, value: Number(amount), hash }),
+    });
+    return response.json();
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
