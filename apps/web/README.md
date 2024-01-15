@@ -29,7 +29,7 @@ A step-by-step series of examples that tell you how to get a development environ
    cp .env.example .env
    ```
 
-   Change the example env values to your own
+   Change the example env values to your own. If you are testing the extension locally be sure to update the `CRHOME_EXTENSION_ID` env to the YOUR chrome extension id found in extension settings or else it will not be able to make requests to the web app. OR just change the base url of the api requests to localhost:3000 if you are running the web app locally.
 
 3. **Install Dependencies**
 
